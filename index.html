@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="p:domain_verify" content="c8558d85051b921ac4e3caafdfd5c533" />
+    <title>Bible Barnyard</title>
+    <link rel="icon" type="image/png" href="/images/fav.png">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        .video-section-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .video-text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .video-container {
+            flex: 0 0 350px;
+            max-width: 350px;
+        }
+
+            .video-container video {
+                width: 100%;
+                height: auto;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+
+        @media (max-width: 768px) {
+            .video-section-content {
+                flex-direction: column;
+            }
+
+            .video-container {
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="./images/bibleJungleBanner.png" alt="Bible Barnyard Banner" class="hero-img" />
+    </header>
+
+    <nav>
+        <ul>
+            Comming Soon
+        </ul>
+    </nav>
+
+    <main>
+        <section id="videos">
+            <h2>🎬 Videos for Kids</h2>
+            <div class="video-section-content">
+                Coming Soon
+            </div>
+        </section>
+
+        <section id="music">
+            <h2>🎵 Sing-Along Songs</h2>
+            Coming Soon
+        </section>
+
+        <section id="about">
+            <h2>About Bible Jungle</h2>
+            <p>Coming Soon</p>
+        </section>
+
+        <section id="contact">
+            <h2>📬 Contact Us</h2>
+            <p>Coming Soon</a></p>
+        </section>
+    </main>
+
+    <!-- NEW FOOTER INCLUDE -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+</body>
+</html>
