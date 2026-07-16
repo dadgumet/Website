@@ -4,102 +4,571 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="p:domain_verify" content="c8558d85051b921ac4e3caafdfd5c533" />
-    <title>Bible Barnyard</title>
+    <title>Misfit Grotto</title>
     <link rel="icon" type="image/png" href="/images/fav.png">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Changed font pairings to a high-character serif for headings and a clean sans-serif for content -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
+
     <style>
-        .video-section-content {
+        .main-video {
+            position: relative;
+            background: #090e11;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(26, 140, 150, 0.1);
+            min-height: 450px;
             display: flex;
             align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
             justify-content: center;
+            border: 1px solid rgba(220, 160, 40, 0.15);
         }
 
-        .video-text {
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Magical deep teal to dark slate gradient to match the background mood */
+            background: linear-gradient(135deg, #0a1c1e 0%, #050b0d 100%);
+            min-height: 450px;
+            position: relative;
+        }
+
+        /* Ambient magical light glow behind placeholder text */
+        .video-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(0, 210, 255, 0.12) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .placeholder-content {
+            text-align: center;
+            color: #e2e8f0;
+            padding: 40px;
+            z-index: 2;
+        }
+
+        .placeholder-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 12px rgba(220, 160, 40, 0.6));
+            animation: magicalPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes magicalPulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; filter: drop-shadow(0 0 8px rgba(220, 160, 40, 0.4)); }
+            50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 18px rgba(0, 210, 255, 0.7)); }
+        }
+
+        .placeholder-content h3 {
+            font-size: 26px;
+            margin-bottom: 12px;
+            font-family: 'Cinzel', serif;
+            color: #e5b842;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+        }
+
+        .placeholder-content p {
+            font-size: 15px;
+            color: #a0aec0;
+            font-weight: 500;
+        }
+
+        #mainVideo {
+            width: 100%;
+            display: none;
+            border-radius: 12px;
+        }
+
+        .video-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #e5b842;
+            font-size: 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 10;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            text-align: center;
+        }
+
+        .video-loading.show { opacity: 1; }
+
+        .spinner {
+            border: 4px solid rgba(225, 185, 65, 0.1);
+            border-top: 4px solid #e5b842;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 12px;
+            box-shadow: 0 0 8px rgba(225, 185, 65, 0.3);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ── Binge Watch toggle ── */
+        .binge-row {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 0 20px 0;
+            background: rgba(14, 26, 31, 0.65);
+            border: 1px solid rgba(220, 160, 40, 0.25);
+            border-radius: 999px;
+            padding: 8px 20px 8px 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .binge-row:hover {
+            border-color: #e5b842;
+            background: rgba(22, 38, 46, 0.8);
+            box-shadow: 0 0 12px rgba(225, 185, 65, 0.2);
+        }
+
+        .binge-row input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #e5b842;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .binge-label {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+
+        .binge-row.active {
+            border-color: #00d2ff;
+            background: rgba(7, 39, 48, 0.8);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.25);
+        }
+
+        .binge-row.active .binge-label {
+            color: #00d2ff;
+            text-shadow: 0 0 4px rgba(0, 210, 255, 0.2);
+        }
+
+        /* ── Autoplay countdown overlay ── */
+        #bingeCountdown {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(5, 11, 14, 0.95) 40%);
+            color: white;
+            padding: 40px 24px 24px;
+            display: none;
+            z-index: 20;
+            text-align: left;
+            border-bottom-left-radius: 11px;
+            border-bottom-right-radius: 11px;
+        }
+
+        #bingeCountdown.show { display: block; }
+
+        .countdown-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .countdown-text strong {
+            display: block;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: #e5b842;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        #nextVideoTitle {
+            color: #e2e8f0;
+        }
+
+        .countdown-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            color: #00d2ff;
+            min-width: 40px;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+        }
+
+        .countdown-bar-wrap {
             flex: 1;
-            min-width: 280px;
+            min-width: 100px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .video-container {
-            flex: 0 0 350px;
-            max-width: 350px;
+        .countdown-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #00d2ff, #00f5d4);
+            border-radius: 3px;
+            width: 100%;
+            transition: width linear;
+            box-shadow: 0 0 8px rgba(0, 210, 255, 0.6);
         }
 
-            .video-container video {
-                width: 100%;
-                height: auto;
-                border-radius: 12px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            }
+        .countdown-cancel {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #fca5a5;
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
 
-        @media (max-width: 768px) {
-            .video-section-content {
-                flex-direction: column;
-            }
+        .countdown-cancel:hover { 
+            background: rgba(239, 68, 68, 0.4);
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+        }
 
-            .video-container {
-                flex: 0 0 auto;
-                width: 100%;
-                max-width: 400px;
-            }
+        /* ── Currently playing highlight ── */
+        .video-block.now-playing {
+            background: rgba(7, 46, 56, 0.85) !important;
+            border-left: 3px solid #00d2ff !important;
+            box-shadow: inset 0 0 12px rgba(0, 210, 255, 0.15), 0 2px 8px rgba(0,0,0,0.3) !important;
+        }
+
+        .video-block.now-playing .video-title {
+            color: #00f5d4 !important;
+            text-shadow: 0 0 6px rgba(0, 245, 212, 0.2);
         }
     </style>
 </head>
+
 <body>
     <header>
-        <img src="./images/bibleJungleBanner.png" alt="Bible Barnyard Banner" class="hero-img" />
-    </header>
-
-    <nav>
-        <ul>
-            Coming Soon
-        </ul>
-    </nav>
+        <img src="/images/website_main.png" alt="Misfit Grotto Banner" class="hero-img" />
+    </header>   
 
     <main>
-        <section id="videos">
-            <h2>🎬 Videos for Kids</h2>
-            <div class="video-section-content">
-                Coming Soon
-            </div>
-        </section>
+        <h2>The Mysteries of Misfit Grotto Video Series</h2>
 
-        <div style="background-color: #2d5016; color: #ffffff; text-align: center; padding: 14px 20px; font-family: Arial, sans-serif; font-size: 16px;">
-            While you wait for the adventure to begin, visit
-            <a href="https://biblebarnyard.com" style="display: block; max-width: 100%; margin: 16px auto 0;">
-                <img src="./images/bbBanner.png" alt="Bible Barnyard Banner" style="width: 100%; height: auto; display: block;" />
-            </a>
+        <div class="main-video" id="videoContainer">
+            <div class="video-placeholder" id="videoPlaceholder">
+                <div class="placeholder-content">
+                    <div class="placeholder-icon">✨</div>
+                    <h3>Enter the Grotto</h3>
+                    <p>Select an episode from the chronicles below to begin your journey</p>
+                </div>
+            </div>
+
+            <video id="mainVideo" controls preload="metadata" playsinline>
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <div class="video-loading" id="videoLoading">
+                <div class="spinner"></div>
+                <div>Summoning video stream...</div>
+            </div>
+
+            <!-- Binge Watch countdown overlay -->
+            <div id="bingeCountdown">
+                <div class="countdown-inner">
+                    <div class="countdown-text">
+                        <strong>🍿 Next Adventure Awaits</strong>
+                        <span id="nextVideoTitle">—</span>
+                    </div>
+                    <div class="countdown-number" id="countdownNumber">5</div>
+                    <div class="countdown-bar-wrap">
+                        <div class="countdown-bar" id="countdownBar"></div>
+                    </div>
+                    <button class="countdown-cancel" id="cancelBinge">Cancel</button>
+                </div>
+            </div>
         </div>
 
-        <section id="music">
-            <h2>🎵 Sing-Along Songs</h2>
-            Coming Soon
-        </section>
+        <!-- Binge Watch toggle -->
+        <label class="binge-row" id="bingeRow">
+            <input type="checkbox" id="bingeToggle" />
+            <span class="binge-label">🍿 Continuous Viewing Mode</span>
+        </label>
 
-        <section id="about">
-            <h2>About Bible Jungle</h2>
-            <p>Coming Soon</p>
-        </section>
+        <div class="reset-row">
+            <button id="resetWatched" class="reset-btn">Reset Watch History</button>
+            <span class="reset-note">🌟 indicates an unviewed tale • ✔️ indicates a completed journey</span>
+        </div>
 
-        <section id="contact">
-            <h2>📬 Contact Us</h2>
-            <p>Coming Soon</p>
-        </section>
+        <div class="clusters">
+            <!-- Videos will be dynamically generated here -->
+        </div>
     </main>
 
-    <!-- NEW FOOTER INCLUDE -->
-    <div id="footer-placeholder"></div>
+    <div class="footer">
+            &copy; <span class="year"></span> Bible Jungle. All content is freely available for non-commercial use.
+            Creative Commons Attribution-NonCommercial-NoDerivatives (CC BY-NC-ND) License Apply.
+            <br />
+            We collect NO personal data. No ads, no tracking, no cookies. Just a safe place for families to watch videos.
+    </div>
 
+    <script src="./videos-data.js"></script>
     <script>
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
+        // Automatically set the current year in all year spans
+        document.querySelectorAll('.year').forEach(el => {
+            el.textContent = new Date().getFullYear();
+        });
+
+        // ── Data & state ────────────────────────────────────────────────────
+        const videoMap = generateVideoMap();   // id → stream URL
+        let   videoList = [];                  // flat ordered array of video objects
+
+        function buildFlatVideoList() {
+            videoList = [];
+            for (const seasonName in videosData) {
+                const season = videosData[seasonName];
+                for (const catName in season.categories) {
+                    const cat = season.categories[catName];
+                    if (cat.videos) {
+                        cat.videos.forEach(v => videoList.push(v));
+                    }
+                    if (cat.subcategories) {
+                        for (const subcatName in cat.subcategories) {
+                            cat.subcategories[subcatName].videos.forEach(v => videoList.push(v));
+                        }
+                    }
+                }
+            }
+        }
+
+        const viewedVideos = JSON.parse(localStorage.getItem('viewedVideos') || '[]');
+        const player        = document.getElementById('mainVideo');
+        const loadingIndicator = document.getElementById('videoLoading');
+        const placeholder   = document.getElementById('videoPlaceholder');
+        const videoContainer = document.getElementById('videoContainer');
+        const bingeToggle   = document.getElementById('bingeToggle');
+        const bingeRow      = document.getElementById('bingeRow');
+        const bingeCountdown = document.getElementById('bingeCountdown');
+        const countdownNumber = document.getElementById('countdownNumber');
+        const countdownBar  = document.getElementById('countdownBar');
+        const nextVideoTitle = document.getElementById('nextVideoTitle');
+        const cancelBingeBtn = document.getElementById('cancelBinge');
+
+        let isFirstPlay    = true;
+        let currentVideoId = null;
+        let countdownTimer = null;
+        let countdownInterval = null;
+        const COUNTDOWN_SECS = 5;
+
+        // ── Binge Watch toggle ───────────────────────────────────────────────
+        bingeToggle.addEventListener('change', () => {
+            bingeRow.classList.toggle('active', bingeToggle.checked);
+            if (!bingeToggle.checked) cancelCountdown();
+        });
+
+        // ── Load & play a video ──────────────────────────────────────────────
+        function loadVideo(videoUrl, videoId) {
+            cancelCountdown();
+
+            currentVideoId = videoId || getIdByUrl(videoUrl);
+
+            if (isFirstPlay) {
+                placeholder.style.display = 'none';
+                player.style.display = 'block';
+                isFirstPlay = false;
+            }
+
+            videoContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            loadingIndicator.classList.add('show');
+
+            const startPlayback = () => {
+                loadingIndicator.classList.remove('show');
+                const p = player.play();
+                if (p) p.catch(() => {});
+            };
+
+            player.onloadedmetadata = startPlayback;
+            player.onloadeddata     = startPlayback;
+            player.oncanplay        = () => loadingIndicator.classList.remove('show');
+
+            player.querySelector('source').src = videoUrl;
+            player.load();
+
+            if (!viewedVideos.includes(videoUrl)) {
+                viewedVideos.push(videoUrl);
+                localStorage.setItem('viewedVideos', JSON.stringify(viewedVideos));
+            }
+
+            updateViewedIcons();
+            highlightNowPlaying(currentVideoId);
+
+            // Analytics
+            const fileName = videoUrl.split('/').pop();
+            player.removeEventListener('play', trackVideoPlay);
+            function trackVideoPlay() {
+                fetch('https://biblebarnyard-analytics.biblebarnyard.workers.dev', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'play', file: fileName })
+                }).catch(() => {});
+                player.removeEventListener('play', trackVideoPlay);
+            }
+            player.addEventListener('play', trackVideoPlay);
+        }
+
+        // When a video ends, start binge countdown if enabled
+        player.addEventListener('ended', () => {
+            if (!bingeToggle.checked) return;
+            const nextVideo = getNextVideo(currentVideoId);
+            if (!nextVideo) return;
+            startCountdown(nextVideo);
+        });
+
+        // ── Countdown logic ──────────────────────────────────────────────────
+        function startCountdown(nextVideo) {
+            nextVideoTitle.textContent = nextVideo.title;
+            bingeCountdown.classList.add('show');
+
+            let remaining = COUNTDOWN_SECS;
+            countdownNumber.textContent = remaining;
+            countdownBar.style.transition = 'none';
+            countdownBar.style.width = '100%';
+
+            // Kick off the shrinking bar after a tiny delay so transition applies
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    countdownBar.style.transition = `width ${COUNTDOWN_SECS}s linear`;
+                    countdownBar.style.width = '0%';
+                });
             });
+
+            countdownInterval = setInterval(() => {
+                remaining--;
+                countdownNumber.textContent = remaining;
+                if (remaining <= 0) clearInterval(countdownInterval);
+            }, 1000);
+
+            countdownTimer = setTimeout(() => {
+                cancelCountdown();
+                loadVideo(nextVideo.stream, nextVideo.id);
+            }, COUNTDOWN_SECS * 1000);
+        }
+
+        function cancelCountdown() {
+            clearTimeout(countdownTimer);
+            clearInterval(countdownInterval);
+            bingeCountdown.classList.remove('show');
+        }
+
+        cancelBingeBtn.addEventListener('click', cancelCountdown);
+
+        // ── Helpers ──────────────────────────────────────────────────────────
+        function getIdByUrl(url) {
+            for (const id in videoMap) {
+                if (videoMap[id] === url) return id;
+            }
+            return null;
+        }
+
+        function getNextVideo(currentId) {
+            const idx = videoList.findIndex(v => v.id === currentId);
+            if (idx === -1 || idx >= videoList.length - 1) return null;
+            return videoList[idx + 1];
+        }
+
+        function highlightNowPlaying(videoId) {
+            document.querySelectorAll('.video-block.now-playing')
+                    .forEach(el => el.classList.remove('now-playing'));
+            if (!videoId) return;
+            const link = document.querySelector(`[data-video="${videoId}"]`);
+            if (link) link.closest('.video-block').classList.add('now-playing');
+        }
+
+        function updateViewedIcons() {
+            document.querySelectorAll('.video-block').forEach(block => {
+                const playLink = block.querySelector('[data-video]');
+                if (!playLink) return;
+                const videoId  = playLink.getAttribute('data-video');
+                const videoUrl = videoMap[videoId];
+                let existing   = block.querySelector('.viewed');
+
+                if (viewedVideos.includes(videoUrl) && !existing) {
+                    const check = document.createElement('span');
+                    check.classList.add('viewed');
+                    check.textContent = ' ✔️';
+                    block.querySelector('.video-title').appendChild(check);
+                }
+                if (!viewedVideos.includes(videoUrl) && existing) {
+                    existing.remove();
+                }
+            });
+        }
+
+        function attachVideoListeners() {
+            document.querySelectorAll('[data-video]').forEach(link => {
+                link.addEventListener('click', e => {
+                    e.preventDefault();
+                    const vid = link.getAttribute('data-video');
+                    const url = videoMap[vid];
+                    if (url) loadVideo(url, vid);
+                });
+            });
+        }
+
+        // ── Boot ─────────────────────────────────────────────────────────────
+        buildFlatVideoList();
+        buildVideoInterface();
+        attachVideoListeners();
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoId   = urlParams.get('v');
+        if (videoId && videoMap[videoId]) loadVideo(videoMap[videoId], videoId);
+
+        updateViewedIcons();
+
+        document.getElementById('resetWatched').addEventListener('click', () => {
+            if (confirm('Are you sure you want to mark all videos as unwatched?')) {
+                localStorage.removeItem('viewedVideos');
+                viewedVideos.length = 0;
+                updateViewedIcons();
+            }
+        });
     </script>
 </body>
 </html>
