@@ -9,13 +9,13 @@ const videosData = {
                     { id: 'ep1', title: 'The Arrival', stream: 'https://assets.biblebarnyard.com/series/MisfitGrotto/01_s.mp4', download: 'https://assets.biblebarnyard.com/series/MisfitGrotto/01_d.mp4' }
                                     ]
             },
-            // 'Episode 2': {
-            //     emoji: '💠',
-            //     videos: [
-            //         { id: 'truth1', title: 'A New Friend', stream: 'https://assets.biblebarnyard.com/series/A/A05ATruth_s.mp4', download: 'https://assets.biblebarnyard.com/series/A/A05ATruth_d.mp4' },
-            //                        ]
+            'Episode 2': {
+                emoji: '💠',
+                videos: [
+                    { id: 'truth1', title: 'A New Friend', stream: 'https://assets.biblebarnyard.com/series/MisfitGrotto/02_s.mp4', download: 'https://assets.biblebarnyard.com/series/MisfitGrotto/02_d.mp4' },
+                                   ]
            
-            // }
+            }
         }
     }
 };
