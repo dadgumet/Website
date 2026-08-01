@@ -119,6 +119,11 @@ function createVideoBlock(video, rowIndex) {
     videoTitle.className = 'video-title';
     videoTitle.textContent = video.title;
 
+    const statusIcon = document.createElement('span');
+    statusIcon.className = 'watch-status unviewed';
+    statusIcon.textContent = ' 🌟';
+    videoTitle.appendChild(statusIcon);
+
     const videoLinks = document.createElement('div');
     videoLinks.className = 'video-links';
 
