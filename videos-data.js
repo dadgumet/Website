@@ -12,7 +12,14 @@ const videosData = {
             'Episode 2': {
                 emoji: '💠',
                 videos: [
-                    { id: 'truth1', title: 'A New Friend', stream: 'https://assets.biblebarnyard.com/series/MisfitGrotto/02_s.mp4', download: 'https://assets.biblebarnyard.com/series/MisfitGrotto/02_d.mp4' },
+                    { id: 'ep2', title: 'A New Friend', stream: 'https://assets.biblebarnyard.com/series/MisfitGrotto/02_s.mp4', download: 'https://assets.biblebarnyard.com/series/MisfitGrotto/02_d.mp4' },
+                                   ]
+           
+            },
+            'Episode 3': {
+                emoji: '💠',
+                videos: [
+                    { id: 'ep3', title: 'The Warning in the Walls', stream: 'https://assets.biblebarnyard.com/series/MisfitGrotto/03_s.mp4', download: 'https://assets.biblebarnyard.com/series/MisfitGrotto/03_d.mp4' },
                                    ]
            
             }
