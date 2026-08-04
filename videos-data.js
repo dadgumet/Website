@@ -27,6 +27,17 @@ const videosData = {
     }
 };
 
+// ── Upcoming Episode Placeholder ────────────────────────────────────
+// Edit these two lines whenever a new episode is in the pipeline.
+// Set enabled to false to hide the block entirely (e.g. right after a
+// new episode has actually gone live and this data has been updated
+// above with its real entry).
+const upcomingRelease = {
+    enabled: true,
+    episode: 'Episode 4',
+    date: '17AUG26'
+};
+
 // Generate video map for quick lookups
 function generateVideoMap() {
     const map = {};
@@ -112,6 +123,49 @@ function buildVideoInterface() {
         clusterDiv.appendChild(subclustersDiv);
         clustersContainer.appendChild(clusterDiv);
     }
+
+    renderUpcomingEpisode();
+}
+
+// Render (or hide) the "next episode" teaser card based on upcomingRelease above
+function renderUpcomingEpisode() {
+    const container = document.getElementById('upcomingEpisode');
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    if (!upcomingRelease || !upcomingRelease.enabled) {
+        container.style.display = 'none';
+        return;
+    }
+    container.style.display = '';
+
+    const icon = document.createElement('div');
+    icon.className = 'upcoming-icon';
+    icon.textContent = '🔮';
+
+    const label = document.createElement('div');
+    label.className = 'upcoming-label';
+    label.textContent = 'A New Tale Approaches';
+
+    const name = document.createElement('div');
+    name.className = 'upcoming-episode-name';
+    name.textContent = upcomingRelease.episode;
+
+    const date = document.createElement('div');
+    date.className = 'upcoming-date';
+
+    const dateLead = document.createTextNode('Approx. Release Date ');
+    const dateValue = document.createElement('span');
+    dateValue.textContent = upcomingRelease.date;
+
+    date.appendChild(dateLead);
+    date.appendChild(dateValue);
+
+    container.appendChild(icon);
+    container.appendChild(label);
+    container.appendChild(name);
+    container.appendChild(date);
 }
 
 // Track row index per subcluster for alternating colors

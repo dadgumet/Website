@@ -559,6 +559,81 @@ h2 {
     text-shadow: 0 0 4px rgba(229, 184, 66, 0.3);
 }
 
+/* ── Upcoming Episode teaser card ─────────────────────────────────── */
+.upcoming-episode {
+    max-width: 480px;
+    margin: 34px auto 10px;
+    padding: 24px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+    background: linear-gradient(160deg, rgba(18, 33, 39, 0.75) 0%, rgba(8, 15, 18, 0.75) 100%);
+    border: 1px solid var(--border-magic);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 20px rgba(0, 210, 255, 0.06);
+}
+
+.upcoming-episode::before {
+    content: '';
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(0, 210, 255, 0.1) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.upcoming-icon {
+    position: relative;
+    z-index: 2;
+    font-size: 34px;
+    margin-bottom: 10px;
+    display: inline-block;
+    filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.55));
+    animation: magicalPulse 3s ease-in-out infinite;
+}
+
+.upcoming-label {
+    position: relative;
+    z-index: 2;
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--teal-glow);
+    opacity: 0.85;
+    margin-bottom: 8px;
+}
+
+.upcoming-episode-name {
+    position: relative;
+    z-index: 2;
+    font-family: 'Cinzel', serif;
+    font-size: 1.35rem;
+    color: var(--gold-primary);
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 0 0 14px rgba(229, 184, 66, 0.25);
+}
+
+.upcoming-date {
+    position: relative;
+    z-index: 2;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.3px;
+}
+
+.upcoming-date span {
+    color: var(--emerald-glow);
+    font-weight: 700;
+    text-shadow: 0 0 6px rgba(0, 245, 212, 0.25);
+}
+
 .footer {
     text-align: center;
     padding: 20px;
@@ -593,5 +668,10 @@ h2 {
     .reset-row {
         flex-direction: column;
         border-radius: 16px;
+    }
+
+    .upcoming-episode {
+        margin: 26px 16px 10px;
+        padding: 20px 20px;
     }
 }
