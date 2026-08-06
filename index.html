@@ -90,7 +90,11 @@
             Contact: misfitgrotto@gmail.com
     </div>
 
-    <script src="./videos-data.js"></script>
+    <script>
+        // Auto-version videos-data.js to prevent caching
+        const version = new Date().getTime();
+        document.write('<script src="./videos-data.js?t=' + version + '"><\/script>');
+    </script>
     <script src="./utils.js"></script>
 </body>
 </html>
