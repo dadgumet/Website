@@ -22,6 +22,13 @@ const videosData = {
                     { id: 'ep3', title: 'The Warning in the Walls', stream: 'https://assets.biblebarnyard.com/series/MisfitGrotto/03_s.mp4', download: 'https://assets.biblebarnyard.com/series/MisfitGrotto/03_d.mp4' },
                                    ]
            
+            },
+            'Episode 4': {
+                emoji: '💠',
+                videos: [
+                    { id: 'ep4', title: 'The Guide Awakens', stream: 'https://assets.biblebarnyard.com/series/MisfitGrotto/04_s.mp4', download: 'https://assets.biblebarnyard.com/series/MisfitGrotto/04_d.mp4' },
+                                   ]
+           
             }
         }
     }
@@ -34,8 +41,8 @@ const videosData = {
 // above with its real entry).
 const upcomingRelease = {
     enabled: true,
-    episode: 'Episode 4',
-    date: '20AUG26'
+    episode: 'Episode 5',
+    date: '07SEP26'
 };
 
 // Generate video map for quick lookups
