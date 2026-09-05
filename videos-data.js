@@ -29,6 +29,13 @@ const videosData = {
                     { id: 'ep4', title: 'The Guide Awakens', stream: 'https://assets.biblebarnyard.com/series/MisfitGrotto/04_s.mp4', download: 'https://assets.biblebarnyard.com/series/MisfitGrotto/04_d.mp4' },
                                    ]
            
+            },
+            'Episode 5': {
+                emoji: '💠',
+                videos: [
+                    { id: 'ep5', title: 'Search for the Head', stream: 'https://assets.biblebarnyard.com/series/MisfitGrotto/05_s.mp4', download: 'https://assets.biblebarnyard.com/series/MisfitGrotto/05_d.mp4' },
+                                   ]
+           
             }
         }
     }
@@ -41,8 +48,8 @@ const videosData = {
 // above with its real entry).
 const upcomingRelease = {
     enabled: true,
-    episode: 'Episode 5',
-    date: '07SEP26'
+    episode: 'Episode 6',
+    date: '28SEP26'
 };
 
 // Generate video map for quick lookups
