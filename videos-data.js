@@ -36,6 +36,12 @@ const videosData = {
                     { id: 'ep5', title: 'Search for the Head', stream: 'https://assets.biblebarnyard.com/series/MisfitGrotto/05_s.mp4', download: 'https://assets.biblebarnyard.com/series/MisfitGrotto/05_d.mp4' },
                                    ]
            
+            },
+            'Episode 6': {
+                emoji: '💠',
+                videos: [
+                    { id: 'ep6', title: 'The Heart of the Jungle', stream: 'https://assets.biblebarnyard.com/series/MisfitGrotto/06_s.mp4', download: 'https://assets.biblebarnyard.com/series/MisfitGrotto/06_d.mp4' },
+                                   ]
             }
         }
     }
@@ -48,8 +54,8 @@ const videosData = {
 // above with its real entry).
 const upcomingRelease = {
     enabled: true,
-    episode: 'Episode 6',
-    date: '28SEP26'
+    episode: 'Episode 7',
+    date: '05OCT26'
 };
 
 // Generate video map for quick lookups
