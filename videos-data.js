@@ -42,6 +42,12 @@ const videosData = {
                 videos: [
                     { id: 'ep6', title: 'The Heart of the Jungle', stream: 'https://assets.biblebarnyard.com/series/MisfitGrotto/06_s.mp4', download: 'https://assets.biblebarnyard.com/series/MisfitGrotto/06_d.mp4' },
                                    ]
+            },
+            'Episode 7': {
+                emoji: '💠',
+                videos: [
+                    { id: 'ep7', title: 'The Purple Crystal', stream: 'https://assets.biblebarnyard.com/series/MisfitGrotto/07_s.mp4', download: 'https://assets.biblebarnyard.com/series/MisfitGrotto/07_d.mp4' },
+                                   ]
             }
         }
     }
@@ -54,8 +60,8 @@ const videosData = {
 // above with its real entry).
 const upcomingRelease = {
     enabled: true,
-    episode: 'Episode 7',
-    date: '05OCT26'
+    episode: 'Episode 8',
+    date: '19OCT26'
 };
 
 // Generate video map for quick lookups
