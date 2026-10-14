@@ -48,6 +48,12 @@ const videosData = {
                 videos: [
                     { id: 'ep7', title: 'The Purple Crystal', stream: 'https://assets.biblebarnyard.com/series/MisfitGrotto/07_s.mp4', download: 'https://assets.biblebarnyard.com/series/MisfitGrotto/07_d.mp4' },
                                    ]
+            },
+            'Episode 8': {
+                emoji: '💠',
+                videos: [
+                    { id: 'ep8', title: 'The Spy Within', stream: 'https://assets.biblebarnyard.com/series/MisfitGrotto/08_s.mp4', download: 'https://assets.biblebarnyard.com/series/MisfitGrotto/08_d.mp4' },
+                                   ]
             }
         }
     }
@@ -60,8 +66,8 @@ const videosData = {
 // above with its real entry).
 const upcomingRelease = {
     enabled: true,
-    episode: 'Episode 8',
-    date: '19OCT26'
+    episode: 'Episode 9',
+    date: '9NOV26'
 };
 
 // Generate video map for quick lookups
