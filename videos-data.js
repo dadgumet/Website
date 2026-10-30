@@ -54,6 +54,12 @@ const videosData = {
                 videos: [
                     { id: 'ep8', title: 'The Spy Within', stream: 'https://assets.biblebarnyard.com/series/MisfitGrotto/08_s.mp4', download: 'https://assets.biblebarnyard.com/series/MisfitGrotto/08_d.mp4' },
                                    ]
+            },
+            'Episode 9': {
+                emoji: '💠',
+                videos: [
+                    { id: 'ep9', title: 'Welcome to the Family', stream: 'https://assets.biblebarnyard.com/series/AMisfitGrotto/09_s.mp4', download: 'https://assets.biblebarnyard.com/series/AMisfitGrotto/09_d.mp4' },
+                                   ]
             }
         }
     }
