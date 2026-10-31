@@ -72,8 +72,8 @@ const videosData = {
 // above with its real entry).
 const upcomingRelease = {
     enabled: true,
-    episode: 'Episode 9',
-    date: '9NOV26'
+    episode: 'Episode 10',
+    date: '19NOV26'
 };
 
 // Generate video map for quick lookups
