@@ -60,6 +60,12 @@ const videosData = {
                 videos: [
                     { id: 'ep9', title: 'Welcome to the Family', stream: 'https://assets.biblebarnyard.com/series/AMisfitGrotto/09_s.mp4', download: 'https://assets.biblebarnyard.com/series/AMisfitGrotto/09_d.mp4' },
                                    ]
+            },
+            'Episode 10': {
+                emoji: '💠',
+                videos: [
+                    { id: 'ep10', title: 'Red Leader', stream: 'https://assets.biblebarnyard.com/series/MisfitGrotto/10_s.mp4', download: 'https://assets.biblebarnyard.com/series/AMisfitGrotto/10_d.mp4' },
+                                   ]
             }
         }
     }
@@ -72,8 +78,8 @@ const videosData = {
 // above with its real entry).
 const upcomingRelease = {
     enabled: true,
-    episode: 'Episode 10',
-    date: '19NOV26'
+    episode: 'Episode 11',
+    date: '30NOV26'
 };
 
 // Generate video map for quick lookups
